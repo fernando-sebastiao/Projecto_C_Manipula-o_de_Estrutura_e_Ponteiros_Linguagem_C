@@ -30,6 +30,8 @@ int main(int argc, char *argv[]) {
         	system("cls");
             Estudante e;
 
+            printf("Insira os dados do Aluno(a):\n");
+
             printf("Numero do estudante: ");
             scanf("%d", &e.Numero_estudante);
 
