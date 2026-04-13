@@ -16,9 +16,7 @@ void aumentarCapacidade(ListaEstudantes *lista)
 	
 	Estudante *temp = realloc(lista->dados, lista->capacidade * sizeof(Estudante));
 	if(temp == NULL)
-	{
-		lista->dados = temp;
-	}
+		lista->dados = temp; 
 	else 
 		printf("Erro ao realocar memoria\n");
 }
