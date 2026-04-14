@@ -72,8 +72,6 @@ void consultar(ListaEstudantes *lista, int numero)
 		if(lista->dados[i].Numero_estudante == numero)
 		{
 			printf("Encontrado: \n");
-			
-			printf("Encontrado:\n");
             printf("Nome: %s | Ano: %d | Cadeiras: %d\n",
                 lista->dados[i].nome,
                 lista->dados[i].Ano_frequencia,
