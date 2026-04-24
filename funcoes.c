@@ -57,14 +57,21 @@ void inserir(ListaEstudantes *lista, Estudante e){
 
 void listar(ListaEstudantes *lista)
 {
-	int i;
+	int i, j;
 	for(i=0; i< lista->tamanho; i++)
 	{
+		Estudante e = lista->dados[i];
 		printf("Numero: %d | Nome: %s | Ano: %d | Cadeiras: %d\n",
             lista->dados[i].Numero_estudante,
             lista->dados[i].nome,
-            lista->dados[i].Ano_frequencia,
-            lista->dados[i].Num_cadeiras);	
+            lista->dados[i].Ano_frequencia
+		);
+		printf("Cadeiras: \n");
+		for(j=0; j < e.num_cadeiras; j++)
+		{
+			printf(" - %s\n", e.cadeiras[j].nome);
+		}
+		printf("\n");
 	}
 }
 
@@ -100,7 +107,7 @@ void consultar(ListaEstudantes *lista, int numero)
                 lista->dados[i].Ano_frequencia,
                 lista->dados[i].Num_cadeiras);
 
-				
+
             return;
 		}
 	}
