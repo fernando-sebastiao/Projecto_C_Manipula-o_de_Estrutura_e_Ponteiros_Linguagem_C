@@ -1,14 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "estruturas.h"
-#include "funcoes.h"
 #include <string.h>
+#include "Estruturas.h"
+#include "funcoes.h"
 
-/* run this program using the console pauser or add your own getch, system("pause") or input loop */
+int main() {
 
-int main(int argc, char *argv[]) {
-	Estudante *estudante;
-	 ListaEstudantes lista;
+    ListaEstudantes lista;
     inicializar(&lista);
 
     int opcao;
@@ -19,18 +17,15 @@ int main(int argc, char *argv[]) {
         printf("2. Listar estudantes\n");
         printf("3. Remover estudante\n");
         printf("4. Consultar estudante\n");
-        printf("5. Listar por numero de cadeiras\n");
+        printf("5. Listar por disciplina\n");
         printf("0. Sair\n");
         printf("Escolha: ");
         scanf("%d", &opcao);
 
-        switch (opcao) {
+        switch(opcao) {
 
         case 1: {
-        	system("cls");
             Estudante e;
-
-            printf("Insira os dados do Aluno(a):\n");
 
             printf("Numero do estudante: ");
             scanf("%d", &e.Numero_estudante);
@@ -41,11 +36,23 @@ int main(int argc, char *argv[]) {
             printf("Ano de frequencia: ");
             scanf("%d", &e.Ano_frequencia);
 
-            printf("Numero de cadeiras: ");
-            scanf("%d", &e.Num_cadeiras);
+            // 🔥 obrigatório
+            inicializarCadeiras(&e);
+
+            int qtd;
+            printf("Quantas cadeiras deseja inserir? ");
+            scanf("%d", &qtd);
+
+            char nome_cadeira[30];
+
+            for(int i = 0; i < qtd; i++) {
+                printf("Nome da cadeira %d: ", i+1);
+                scanf(" %[^\n]", nome_cadeira);
+
+                adicionarCadeira(&e, nome_cadeira);
+            }
 
             inserir(&lista, e);
-            system("cls");
             break;
         }
 
@@ -66,16 +73,33 @@ int main(int argc, char *argv[]) {
             printf("Numero do estudante a consultar: ");
             scanf("%d", &numero);
             consultar(&lista, numero);
-            printf("\n\n");
             break;
         }
 
         case 5: {
-            int cadeiras;
-            printf("Numero de cadeiras: ");
-            scanf("%d", &cadeiras);
-            listarPorCadeiras(&lista, cadeiras);
-            printf("\n\n");
+            char disciplina[30];
+
+            printf("Nome da disciplina: ");
+            scanf(" %[^\n]", disciplina);
+
+
+            for(int i = 0; i < lista.tamanho; i++) {
+                Estudante e = lista.dados[i];
+
+                for(int j = 0; j < e.num_cadeiras; j++) {
+                    if(strcmp(e.cadeiras[j].nome, disciplina) == 0) {
+
+                        printf("Numero: %d | Nome: %s | Ano: %d\n",
+                            e.Numero_estudante,
+                            e.nome,
+                            e.Ano_frequencia);
+
+                        printf("\n");
+                        break;
+                    }
+                }
+            }
+
             break;
         }
 
@@ -87,8 +111,8 @@ int main(int argc, char *argv[]) {
             printf("Opcao invalida\n");
         }
 
-    } while (opcao != 0);
+    } while(opcao != 0);
 
     liberar(&lista);
-	return 0;
+    return 0;
 }

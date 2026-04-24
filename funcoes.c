@@ -120,24 +120,28 @@ void consultar(ListaEstudantes *lista, int numero)
 	printf("Estudante nao encontrado\n");
 }
 
-void listarPorCadeiras(ListaEstudantes *lista, int cadeiras)
+void listarPorNomeCadeiras(ListaEstudantes *lista, char *nome_cadeira)
 {
-	int i, j;
-	for(i=0; i < lista->tamanho;i++)
-	{
-		estudante e = lista->dados[i];
-		for(j=0; j < e.num_cadeiras; j++)
-		{
-			if(strcmp(e.cadeiras[j].nome, cadeiras) == 0)
-			{
-				printf("Nome: %s | Ano: %d | Cadeiras: %d\n",
-					lista->dados[i].nome,
-					lista->dados[i].Ano_frequencia,
-					lista->dados[i].Num_cadeiras);
-					printf("\n");
-				break;
-			}
-	}
+    int i, j;
+
+    for(i = 0; i < lista->tamanho; i++)
+    {
+        Estudante e = lista->dados[i];
+
+        for(j = 0; j < e.num_cadeiras; j++)
+        {
+            if(strcmp(e.cadeiras[j].nome, nome_cadeira) == 0)
+            {
+                printf("Numero: %d | Nome: %s | Ano: %d | Total Cadeiras: %d\n",
+                    e.Numero_estudante,
+                    e.nome,
+                    e.Ano_frequencia,
+                    e.num_cadeiras);
+
+                break; 
+            }
+        }
+    }
 }
 
 void liberar(ListaEstudantes *lista) {
@@ -148,8 +152,11 @@ void liberar(ListaEstudantes *lista) {
                 lista->dados[i].Num_cadeiras);
 		}
 	}
-}
+
 
 void liberar(ListaEstudantes *lista) {
+    for(int i = 0; i < lista->tamanho; i++) {
+        free(lista->dados[i].cadeiras);
+    }
     free(lista->dados);
 }
