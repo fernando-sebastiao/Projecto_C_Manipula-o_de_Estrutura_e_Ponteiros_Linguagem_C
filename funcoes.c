@@ -1,12 +1,35 @@
 #include "Estruturas.h"
 #include<stdlib.h>
 #include <stdio.h>
-
+#include <string.h>
 
 void inicializar(ListaEstudantes *lista){
 	lista->capacidade = 2;
 	lista->tamanho = 0;
 	lista->dados = malloc(lista->capacidade * sizeof(Estudante));
+}
+
+void inicializarCadeiras(Estudante *e)
+{
+	e->cap_cadeiras = 2;
+	e->num_cadeiras = 0;
+	e->cadeiras = malloc(e->cap_cadeiras * sizeof(Cadeira));
+}
+
+void adicionarCadeira(Estudante *e, char *nome_cadeira)
+{
+	if(e->num_cadeiras == e->cap_cadeiras)
+	{
+		e->cap_cadeiras *= 2;
+		Cadeira *temp = realloc(e->cadeiras, e->cap_cadeiras * sizeof(Cadeira));
+		if(temp != NULL)
+			e->cadeiras = temp;
+		else
+			printf("Erro ao realocar memoria\n");
+	}
+	
+	strcpy(e->cadeiras[e->num_cadeiras].nome, nome_cadeira);
+	e->num_cadeiras++;
 }
 
 void aumentarCapacidade(ListaEstudantes *lista)
@@ -77,6 +100,7 @@ void consultar(ListaEstudantes *lista, int numero)
                 lista->dados[i].Ano_frequencia,
                 lista->dados[i].Num_cadeiras);
 
+				
             return;
 		}
 	}
