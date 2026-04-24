@@ -80,7 +80,7 @@ void remover(ListaEstudantes *lista, int numero){
 	for(i = 0; i < lista->tamanho; i++)
 	{
 		if(lista->dados[i].Numero_estudante == numero){
-			
+			free(lista->dados[i].cadeiras);
 			for(j = i; j < lista->tamanho-1;j++)
 			{
 				lista->dados[j] = lista->dados[j+1];
