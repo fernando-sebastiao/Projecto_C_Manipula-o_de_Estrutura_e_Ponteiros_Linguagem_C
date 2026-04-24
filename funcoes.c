@@ -96,17 +96,22 @@ void remover(ListaEstudantes *lista, int numero){
 
 void consultar(ListaEstudantes *lista, int numero)
 {
-	int i;
+	int i, j;
 	for(i = 0; i < lista->tamanho; i++)
 	{
 		if(lista->dados[i].Numero_estudante == numero)
 		{
+		Estudante e = lista->dados[i];	
 			printf("Encontrado: \n");
             printf("Nome: %s | Ano: %d | Cadeiras: %d\n",
                 lista->dados[i].nome,
                 lista->dados[i].Ano_frequencia,
                 lista->dados[i].Num_cadeiras);
-
+			printf("Cadeiras: \n");
+			for(j=0; j < e.num_cadeiras; j++)
+			{
+				printf(" - %s\n", e.cadeiras[j].nome);
+			}
 
             return;
 		}
