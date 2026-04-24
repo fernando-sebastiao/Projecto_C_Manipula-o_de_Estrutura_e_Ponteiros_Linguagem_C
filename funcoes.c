@@ -122,10 +122,25 @@ void consultar(ListaEstudantes *lista, int numero)
 
 void listarPorCadeiras(ListaEstudantes *lista, int cadeiras)
 {
-	int i;
+	int i, j;
 	for(i=0; i < lista->tamanho;i++)
 	{
-		if(lista->dados[i].Num_cadeiras == cadeiras)
+		estudante e = lista->dados[i];
+		for(j=0; j < e.num_cadeiras; j++)
+		{
+			if(strcmp(e.cadeiras[j].nome, cadeiras) == 0)
+			{
+				printf("Nome: %s | Ano: %d | Cadeiras: %d\n",
+					lista->dados[i].nome,
+					lista->dados[i].Ano_frequencia,
+					lista->dados[i].Num_cadeiras);
+					printf("\n");
+				break;
+			}
+	}
+}
+
+void liberar(ListaEstudantes *lista) {
 		{
 			printf("Nome: %s | Ano: %d | Cadeiras: %d\n",
                 lista->dados[i].nome,
