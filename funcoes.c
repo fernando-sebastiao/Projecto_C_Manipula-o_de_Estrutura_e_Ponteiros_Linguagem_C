@@ -145,17 +145,8 @@ void listarPorNomeCadeiras(ListaEstudantes *lista, char *nome_cadeira)
 }
 
 void liberar(ListaEstudantes *lista) {
-		{
-			printf("Nome: %s | Ano: %d | Cadeiras: %d\n",
-                lista->dados[i].nome,
-                lista->dados[i].Ano_frequencia,
-                lista->dados[i].Num_cadeiras);
-		}
-	}
-
-
-void liberar(ListaEstudantes *lista) {
-    for(int i = 0; i < lista->tamanho; i++) {
+	int i;
+    for(i = 0; i < lista->tamanho; i++) {
         free(lista->dados[i].cadeiras);
     }
     free(lista->dados);

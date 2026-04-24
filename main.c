@@ -9,7 +9,7 @@ int main() {
     ListaEstudantes lista;
     inicializar(&lista);
 
-    int opcao;
+    int opcao, i;
 
     do {
         printf("\n===== MENU =====\n");
@@ -44,7 +44,7 @@ int main() {
 
             char nome_cadeira[30];
 
-            for(int i = 0; i < qtd; i++) {
+            for(i = 0; i < qtd; i++) {
                 printf("Nome da cadeira %d: ", i + 1);
                 scanf(" %[^\n]", nome_cadeira);
 
