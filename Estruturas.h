@@ -2,7 +2,15 @@
 typedef struct
 {
 	char nome[20];
+	StatusCadeira status;
 }Cadeira;
+
+typedef enum {
+    NAO_INSCRITO,
+    INSCRITO,
+    APROVADO,
+    REPROVADO
+} StatusCadeira;
 
 typedef struct
 {
