@@ -39,6 +39,7 @@ int main() {
             inicializarCadeiras(&e);
 
             int qtd;
+            int statusInt;
             printf("Quantas cadeiras deseja inserir? ");
             scanf("%d", &qtd);
 
@@ -48,18 +49,23 @@ int main() {
                 printf("Nome da cadeira %d: ", i + 1);
                 scanf(" %[^\n]", nome_cadeira);
 
-                adicionarCadeira(&e, nome_cadeira);
+                 printf("Status (0=NAO_INSCRITO, 1=INSCRITO, 2=APROVADO, 3=REPROVADO): ");
+                 scanf("%d", &statusInt);
+                 adicionarCadeira(&e, nome_cadeira, (StatusCadeira)statusInt);
             }
 
             inserir(&lista, e);
+            system("cls");
             break;
         }
 
         case 2:
+        	system("cls");
             listar(&lista);
             break;
 
         case 3: {
+        	system("cls");
             int numero;
             printf("Numero do estudante a remover: ");
             scanf("%d", &numero);
@@ -68,6 +74,7 @@ int main() {
         }
 
         case 4: {
+        	system("cls");
             int numero;
             printf("Numero do estudante a consultar: ");
             scanf("%d", &numero);
@@ -76,6 +83,7 @@ int main() {
         }
 
         case 5: {
+        	system("cls");
             char disciplina[30];
 
             printf("Nome da disciplina: ");

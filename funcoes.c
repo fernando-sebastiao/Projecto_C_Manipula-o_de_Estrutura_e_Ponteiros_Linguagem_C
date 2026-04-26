@@ -16,7 +16,7 @@ void inicializarCadeiras(Estudante *e)
 	e->cadeiras = malloc(e->cap_cadeiras * sizeof(Cadeira));
 }
 
-void adicionarCadeira(Estudante *e, char *nome_cadeira)
+void adicionarCadeira(Estudante *e, char *nome_cadeira, StatusCadeira status)
 {
 	if(e->num_cadeiras == e->cap_cadeiras)
 	{
@@ -29,6 +29,7 @@ void adicionarCadeira(Estudante *e, char *nome_cadeira)
 	}
 	
 	strcpy(e->cadeiras[e->num_cadeiras].nome, nome_cadeira);
+	e->cadeiras[e->num_cadeiras].status = status;
 	e->num_cadeiras++;
 }
 
@@ -55,26 +56,46 @@ void inserir(ListaEstudantes *lista, Estudante e){
 	lista->tamanho++;
 }
 
+const char* statusParaTexto(StatusCadeira status)
+{
+    switch(status)
+    {
+        case NAO_INSCRITO: return "Nao Inscrito";
+        case INSCRITO: return "Inscrito";
+        case APROVADO: return "Aprovado";
+        case REPROVADO: return "Reprovado";
+        default: return "Desconhecido";
+    }
+}
+
 void listar(ListaEstudantes *lista)
 {
 	int i, j;
-	for(i=0; i< lista->tamanho; i++)
+
+	for(i = 0; i < lista->tamanho; i++)
 	{
 		Estudante e = lista->dados[i];
-		printf("Numero: %d | Nome: %s | Ano: %d | Cadeiras: %d\n",
-            lista->dados[i].Numero_estudante,
-            lista->dados[i].nome,
-            lista->dados[i].Ano_frequencia
+
+		printf("Numero: %d | Nome: %s | Ano: %d | Total Cadeiras: %d\n",
+			e.Numero_estudante,
+			e.nome,
+			e.Ano_frequencia,
+			e.num_cadeiras
 		);
-		printf("Cadeiras: \n");
-		for(j=0; j < e.num_cadeiras; j++)
+
+		printf("Cadeiras:\n");
+
+		for(j = 0; j < e.num_cadeiras; j++)
 		{
-			printf(" - %s\n", e.cadeiras[j].nome);
+			printf(" - %s | Status: %s\n",
+				e.cadeiras[j].nome,
+				statusParaTexto(e.cadeiras[j].status)
+			);
 		}
+
 		printf("\n");
 	}
 }
-
 void remover(ListaEstudantes *lista, int numero){
 	int i, j;
 	for(i = 0; i < lista->tamanho; i++)

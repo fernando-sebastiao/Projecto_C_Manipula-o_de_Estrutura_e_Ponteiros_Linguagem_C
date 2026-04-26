@@ -1,9 +1,4 @@
 
-typedef struct
-{
-	char nome[20];
-	StatusCadeira status;
-}Cadeira;
 
 typedef enum {
     NAO_INSCRITO,
@@ -11,6 +6,12 @@ typedef enum {
     APROVADO,
     REPROVADO
 } StatusCadeira;
+
+typedef struct
+{
+	char nome[20];
+	StatusCadeira status;
+}Cadeira;
 
 typedef struct
 {
